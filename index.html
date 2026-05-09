@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustScan AI | Honest Rewards Matcher</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root { --deep-navy: #001f3f; --trust-green: #2ecc71; --accent-blue: #0074D9; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #333; }
+        
+        /* Header */
+        .trust-header { background: var(--deep-navy); color: white; padding: 60px 20px; text-align: center; border-bottom: 5px solid var(--accent-blue); }
+        .transparency-bar { background: rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 50px; display: inline-block; margin-bottom: 20px; font-size: 0.8rem; border: 1px solid rgba(255,255,255,0.2); }
+        .pulse-dot { height: 10px; width: 10px; background: var(--trust-green); border-radius: 50%; display: inline-block; margin-right: 10px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(46,204,113,0.7); } 70% { box-shadow: 0 0 0 10px rgba(46,204,113,0); } 100% { box-shadow: 0 0 0 0 rgba(46,204,113,0); } }
+
+        /* Matcher Card */
+        .matcher-card { max-width: 600px; margin: -40px auto 40px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); text-align: center; }
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 20px; }
+        .opt-btn { background: #f1f5f9; border: 2px solid #e2e8f0; padding: 12px; border-radius: 10px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .opt-btn:hover { border-color: var(--accent-blue); background: #ebf8ff; }
+        .opt-btn.active { background: var(--deep-navy); color: white; border-color: var(--deep-navy); }
+
+        /* Results Area */
+        .result-box { display: none; margin-top: 25px; padding-top: 20px; border-top: 1px dashed #cbd5e1; text-align: left; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .flaw-box { background: #fff5f5; border-left: 4px solid #f56565; padding: 15px; margin-top: 15px; }
+
+        /* Support Box */
+        .support-box { max-width: 600px; margin: 0 auto 50px; background: var(--deep-navy); color: white; padding: 30px; border-radius: 15px; text-align: center; }
+        .cpc-btn { display: inline-block; background: var(--trust-green); color: var(--deep-navy); padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 900; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <header class="trust-header">
+        <div class="transparency-bar">
+            <span class="pulse-dot"></span>
+            <span id="v-count">1,240</span> SITES VERIFIED | <span style="color:var(--trust-green)" id="b-count">86</span> SCAMS BLOCKED
+        </div>
+        <h1 style="margin:0; font-size: 2.5rem;">TrustScan AI</h1>
+        <p style="opacity:0.8">"Protecting your time, not selling your dreams."</p>
+    </header>
+
+    <div class="matcher-card">
+        <h2 style="font-size: 1.2rem; color: var(--deep-navy);">How much time do you have right now?</h2>
+        <div class="options-grid">
+            <div class="opt-btn" onclick="runMatch(this, '5')">5 Min</div>
+            <div class="opt-btn" onclick="runMatch(this, '15')">15 Min</div>
+            <div class="opt-btn" onclick="runMatch(this, '30')">30+ Min</div>
+        </div>
+
+        <div id="res" class="result-box">
+            <div style="background:var(--trust-green); color:white; padding:4px 12px; border-radius:20px; display:inline-block; font-size:0.7rem; font-weight:bold;">AI RECOMMENDED</div>
+            <h3 id="s-name" style="color:var(--deep-navy); margin:10px 0;"></h3>
+            <p id="s-desc" style="font-size:0.9rem; color:#64748b;"></p>
+            <div class="flaw-box">
+                <strong style="color:#c53030; font-size:0.8rem;">CRITICAL FLAW:</strong>
+                <p id="s-flaw" style="margin:5px 0 0; font-size:0.85rem; color:#742a2a;"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="support-box">
+        <p style="opacity:0.9">Running this AI costs money. If we saved your time, please support our mission with one click.</p>
+        <a href="YOUR_LINK_HERE" class="cpc-btn" target="_blank">🚀 SUPPORT TRUSTSCAN</a>
+    </div>
+
+    <script>
+        function runMatch(el, time) {
+            document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+            var res = document.getElementById('res');
+            res.style.display = 'block';
+            if(time==='5'){
+                update('Fetch Rewards', 'Snap grocery receipts for points.', 'Extremely slow accumulation. Takes months for a $5 card.');
+            }else if(time==='15'){
+                update('Survey Junkie', 'Fast surveys with clean UI.', 'High data collection. They build a deep profile of your life.');
+            }else{
+                update('Swagbucks', 'The biggest rewards platform.', 'The disqualification trap. You might work 15 mins for $0.');
+            }
+        }
+        function update(n, d, f){
+            document.getElementById('s-name').innerText = n;
+            document.getElementById('s-desc').innerText = d;
+            document.getElementById('s-flaw').innerText = f;
+        }
+        setInterval(() => {
+            let v = document.getElementById('v-count');
+            if(Math.random() > 0.5) v.innerText = (parseInt(v.innerText.replace(',',''))+1).toLocaleString();
+        }, 4000);
+    </script>
+</body>
+</html>
