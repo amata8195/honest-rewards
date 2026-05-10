@@ -1,95 +1,805 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html lang="en">
+<html b:version='2' class='v2' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrustScan AI | Honest Rewards Matcher</title>
-    <link href="https://googleapis.com" rel="stylesheet">
-    <style>
-        :root { --deep-navy: #001f3f; --trust-green: #2ecc71; --accent-blue: #0074D9; }
-        body { margin: 0; font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #333; }
-        
-        /* Header */
-        .trust-header { background: var(--deep-navy); color: white; padding: 60px 20px; text-align: center; border-bottom: 5px solid var(--accent-blue); }
-        .transparency-bar { background: rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 50px; display: inline-block; margin-bottom: 20px; font-size: 0.8rem; border: 1px solid rgba(255,255,255,0.2); }
-        .pulse-dot { height: 10px; width: 10px; background: var(--trust-green); border-radius: 50%; display: inline-block; margin-right: 10px; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(46,204,113,0.7); } 70% { box-shadow: 0 0 0 10px rgba(46,204,113,0); } 100% { box-shadow: 0 0 0 0 rgba(46,204,113,0); } }
+  <meta content='width=device-width, initial-scale=1.0' name='viewport'/>
+  <b:include data='blog' name='all-head-content'/>
+  <title><data:blog.pageTitle/></title>
+  <link href='https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&amp;family=DM+Mono:wght@400;500&amp;display=swap' rel='stylesheet'/>
 
-        /* Matcher Card */
-        .matcher-card { max-width: 600px; margin: -40px auto 40px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); text-align: center; }
-        .options-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 20px; }
-        .opt-btn { background: #f1f5f9; border: 2px solid #e2e8f0; padding: 12px; border-radius: 10px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .opt-btn:hover { border-color: var(--accent-blue); background: #ebf8ff; }
-        .opt-btn.active { background: var(--deep-navy); color: white; border-color: var(--deep-navy); }
+  <b:skin><![CDATA[
+/* â”€â”€ TRUSTSCAN AI - BLOGGER TEMPLATE â”€â”€ */
 
-        /* Results Area */
-        .result-box { display: none; margin-top: 25px; padding-top: 20px; border-top: 1px dashed #cbd5e1; text-align: left; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .flaw-box { background: #fff5f5; border-left: 4px solid #f56565; padding: 15px; margin-top: 15px; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* Support Box */
-        .support-box { max-width: 600px; margin: 0 auto 50px; background: var(--deep-navy); color: white; padding: 30px; border-radius: 15px; text-align: center; }
-        .cpc-btn { display: inline-block; background: var(--trust-green); color: var(--deep-navy); padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 900; margin-top: 20px; }
-    </style>
+:root {
+  --navy: #001f3f;
+  --navy2: #002d5a;
+  --green: #2ecc71;
+  --blue: #0074D9;
+  --text: #f0f4f8;
+  --muted: #8892b0;
+  --card: #ffffff;
+  --bg: #f0f4f8;
+  --border: rgba(0,116,217,0.2);
+}
+
+body {
+  font-family: 'DM Mono', monospace;
+  background: var(--bg);
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* â”€â”€ SITE HEADER â”€â”€ */
+#ts-site-header {
+  background: var(--navy);
+  border-bottom: 4px solid var(--blue);
+  padding: 0;
+}
+
+#ts-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 18px 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+#ts-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  color: #fff;
+  letter-spacing: -1px;
+  text-decoration: none;
+}
+
+#ts-logo span { color: var(--green); }
+
+#ts-nav a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-left: 20px;
+  transition: color 0.2s;
+}
+
+#ts-nav a:hover { color: var(--green); }
+
+/* â”€â”€ HERO SECTION (TrustScan tool area) â”€â”€ */
+#ts-hero {
+  background: var(--navy);
+  color: #fff;
+  padding: 60px 20px 80px;
+  text-align: center;
+}
+
+.ts-pill {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 22px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  color: #fff;
+}
+
+.ts-pulse {
+  width: 10px; height: 10px;
+  background: var(--green);
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
+  box-shadow: 0 0 8px var(--green);
+  animation: tsPulse 2s infinite;
+}
+
+@keyframes tsPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(46,204,113,0.7); }
+  70%  { box-shadow: 0 0 0 10px rgba(46,204,113,0); }
+  100% { box-shadow: 0 0 0 0 rgba(46,204,113,0); }
+}
+
+#ts-hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 6vw, 52px);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -1px;
+  margin: 0 0 14px;
+}
+
+#ts-hero h1 span { color: var(--green); }
+
+#ts-hero p {
+  font-size: 15px;
+  opacity: 0.7;
+  font-style: italic;
+  margin: 0;
+}
+
+/* â”€â”€ MATCHER CARD â”€â”€ */
+#ts-matcher {
+  max-width: 600px;
+  margin: -40px auto 0;
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+#ts-matcher h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+#ts-matcher p.sub {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 18px;
+}
+
+.ts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.ts-opt {
+  background: #f1f5f9;
+  border: 2px solid #e2e8f0;
+  padding: 14px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--navy);
+  transition: all 0.25s;
+}
+
+.ts-opt:hover {
+  border-color: var(--blue);
+  background: #ebf8ff;
+  transform: translateY(-2px);
+}
+
+.ts-opt.active {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+
+.ts-result {
+  display: none;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px dashed #cbd5e1;
+  text-align: left;
+  animation: tsFade 0.4s ease;
+}
+
+@keyframes tsFade { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+.ts-ai-badge {
+  background: var(--green);
+  color: #fff;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.ts-result h3 {
+  font-family: 'Syne', sans-serif;
+  color: var(--navy);
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+.ts-result p.desc { font-size: 13px; color: #64748b; margin-bottom: 14px; }
+
+.ts-flaw {
+  background: #fff5f5;
+  border-left: 4px solid #f56565;
+  padding: 14px;
+  border-radius: 0 6px 6px 0;
+}
+
+.ts-flaw strong { color: #c53030; font-size: 11px; letter-spacing: 1px; }
+.ts-flaw p { margin: 5px 0 0; font-size: 13px; color: #742a2a; }
+
+/* â”€â”€ SUPPORT BOX â”€â”€ */
+#ts-support {
+  max-width: 600px;
+  margin: 30px auto 0;
+  background: var(--navy);
+  color: #fff;
+  padding: 28px 30px;
+  border-radius: 14px;
+  text-align: center;
+  border: 1px solid rgba(0,116,217,0.3);
+}
+
+#ts-support p { opacity: 0.85; font-size: 13px; margin-bottom: 16px; }
+
+.ts-cpc {
+  display: inline-block;
+  background: var(--green);
+  color: var(--navy);
+  padding: 14px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+}
+
+.ts-cpc:hover {
+  background: #27ae60;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(46,204,113,0.3);
+}
+
+/* â”€â”€ MAIN CONTENT AREA â”€â”€ */
+#ts-main-wrap {
+  max-width: 1100px;
+  margin: 50px auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 30px;
+}
+
+/* â”€â”€ POSTS â”€â”€ */
+.ts-section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ts-section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.post-outer {
+  background: #fff;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  border: 1px solid #e8edf2;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.post-outer:hover {
+  box-shadow: 0 8px 25px rgba(0,31,63,0.1);
+  transform: translateY(-2px);
+}
+
+h3.post-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  padding: 22px 24px 8px;
+  color: var(--navy);
+}
+
+h3.post-title a {
+  color: var(--navy);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+h3.post-title a:hover { color: var(--blue); }
+
+.post-header {
+  padding: 0 24px 8px;
+  font-size: 11px;
+  color: #94a3b8;
+  letter-spacing: 1px;
+}
+
+.post-body {
+  padding: 0 24px 20px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #4a5568;
+}
+
+.post-footer {
+  padding: 14px 24px;
+  background: #f8fafc;
+  border-top: 1px solid #e8edf2;
+  font-size: 11px;
+  color: #94a3b8;
+  letter-spacing: 1px;
+}
+
+.post-footer a { color: var(--blue); text-decoration: none; }
+
+/* Date header */
+h2.date-header span {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: transparent;
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* â”€â”€ SIDEBAR â”€â”€ */
+.sidebar-widget {
+  background: #fff;
+  border-radius: 12px;
+  padding: 22px;
+  margin-bottom: 22px;
+  border: 1px solid #e8edf2;
+}
+
+.sidebar-widget h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e8edf2;
+}
+
+/* Search */
+.gsc-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  outline: none;
+  color: var(--navy);
+  transition: border-color 0.2s;
+}
+
+.gsc-input:focus { border-color: var(--blue); }
+
+.gsc-search-button {
+  margin-top: 8px;
+  width: 100%;
+  padding: 10px;
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.gsc-search-button:hover { background: var(--blue); }
+
+/* Labels */
+.label-widget-content a {
+  display: inline-block;
+  background: #f0f4f8;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 12px;
+  color: var(--navy);
+  text-decoration: none;
+  margin: 3px;
+  transition: all 0.2s;
+}
+
+.label-widget-content a:hover {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+
+/* Archive */
+.flat li {
+  list-style: none;
+  padding: 7px 0;
+  border-bottom: 1px solid #f0f4f8;
+  font-size: 13px;
+}
+
+.flat a { color: var(--navy); text-decoration: none; }
+.flat a:hover { color: var(--blue); }
+
+/* Pager */
+.blog-pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  font-size: 13px;
+}
+
+.blog-pager a {
+  background: var(--navy);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1px;
+  transition: background 0.2s;
+}
+
+.blog-pager a:hover { background: var(--blue); }
+
+/* â”€â”€ FOOTER â”€â”€ */
+#ts-footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin-top: 40px;
+  border-top: 3px solid var(--blue);
+}
+
+#ts-footer a { color: var(--green); text-decoration: none; }
+
+/* â”€â”€ RESPONSIVE â”€â”€ */
+@media (max-width: 768px) {
+  #ts-main-wrap {
+    grid-template-columns: 1fr;
+  }
+  .ts-grid { grid-template-columns: 1fr 1fr 1fr; }
+  #ts-topbar { justify-content: center; }
+  #ts-nav { display: none; }
+}
+
+/* â”€â”€ MISC â”€â”€ */
+a:link, a:visited { color: var(--blue); }
+a:hover { color: var(--navy); }
+
+.content-outer, .content-inner, body > .content { background: transparent !important; box-shadow: none !important; }
+.region-inner { min-width: 0 !important; max-width: 100% !important; }
+.body-fauxcolumns, .content-fauxcolumns, .fauxcolumn-outer { display: none !important; }
+.header-outer, .tabs-outer, .main-outer, .footer-outer { background: transparent !important; border: none !important; }
+.Header, .tabs-inner, .main-inner, .footer-inner { display: none !important; }
+  ]]></b:skin>
 </head>
-<body>
 
-    <header class="trust-header">
-        <div class="transparency-bar">
-            <span class="pulse-dot"></span>
-            <span id="v-count">1,240</span> SITES VERIFIED | <span style="color:var(--trust-green)" id="b-count">86</span> SCAMS BLOCKED
-        </div>
-        <h1 style="margin:0; font-size: 2.5rem;">TrustScan AI</h1>
-        <p style="opacity:0.8">"Protecting your time, not selling your dreams."</p>
-    </header>
+<body expr:class='"loading" + data:blog.mobileClass'>
 
-    <div class="matcher-card">
-        <h2 style="font-size: 1.2rem; color: var(--deep-navy);">How much time do you have right now?</h2>
-        <div class="options-grid">
-            <div class="opt-btn" onclick="runMatch(this, '5')">5 Min</div>
-            <div class="opt-btn" onclick="runMatch(this, '15')">15 Min</div>
-            <div class="opt-btn" onclick="runMatch(this, '30')">30+ Min</div>
-        </div>
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     SITE HEADER
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<div id='ts-site-header'>
+  <div id='ts-topbar'>
+    <a href='/' id='ts-logo'>Trust<span>Scan</span> AI</a>
+    <nav id='ts-nav'>
+      <a href='/'>Home</a>
+      <a href='/p/about.html'>About</a>
+      <a href='/p/contact.html'>Contact</a>
+    </nav>
+  </div>
+</div>
 
-        <div id="res" class="result-box">
-            <div style="background:var(--trust-green); color:white; padding:4px 12px; border-radius:20px; display:inline-block; font-size:0.7rem; font-weight:bold;">AI RECOMMENDED</div>
-            <h3 id="s-name" style="color:var(--deep-navy); margin:10px 0;"></h3>
-            <p id="s-desc" style="font-size:0.9rem; color:#64748b;"></p>
-            <div class="flaw-box">
-                <strong style="color:#c53030; font-size:0.8rem;">CRITICAL FLAW:</strong>
-                <p id="s-flaw" style="margin:5px 0 0; font-size:0.85rem; color:#742a2a;"></p>
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     HERO + TRUSTSCAN TOOL
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<div id='ts-hero'>
+  <div class='ts-pill'>
+    <span class='ts-pulse'/>
+    <span id='ts-v'>1,240</span>&#160;SITES VERIFIED&#160;|&#160;<span style='color:#2ecc71' id='ts-b'>86</span>&#160;SCAMS BLOCKED
+  </div>
+  <h1>TrustScan <span>AI</span></h1>
+  <p>&#34;Protecting your time, not selling your dreams.&#34;</p>
+</div>
+
+<!-- Matcher Card -->
+<div style='padding: 0 20px;'>
+<div id='ts-matcher'>
+  <h2>How much time do you have right now?</h2>
+  <p class='sub'>We will match you with the best rewards site</p>
+  <div class='ts-grid'>
+    <div class='ts-opt' onclick='tsRun(this,"5")'>5 Min</div>
+    <div class='ts-opt' onclick='tsRun(this,"15")'>15 Min</div>
+    <div class='ts-opt' onclick='tsRun(this,"30")'>30+ Min</div>
+  </div>
+  <div class='ts-result' id='ts-res'>
+    <div class='ts-ai-badge'>AI RECOMMENDED</div>
+    <h3 id='ts-name'/>
+    <p class='desc' id='ts-desc'/>
+    <div class='ts-flaw'>
+      <strong>CRITICAL FLAW:</strong>
+      <p id='ts-flaw'/>
+    </div>
+  </div>
+</div>
+
+<!-- Support Box -->
+<div id='ts-support'>
+  <p>Running this AI costs money. If we saved your time, please support our mission with one click.</p>
+  <a class='ts-cpc' href='YOUR_LINK_HERE' target='_blank'>&#128640; SUPPORT TRUSTSCAN</a>
+</div>
+</div>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     MAIN CONTENT
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<div id='ts-main-wrap'>
+
+  <!-- Posts Column -->
+  <div id='ts-posts'>
+    <div class='ts-section-title'>// Latest Articles</div>
+
+    <!-- Blogger Blog Widget -->
+    <b:section class='main' id='main' name='Main' showaddelement='no'>
+      <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog'>
+        <b:includable id='main' var='top'>
+          <div class='blog-posts hfeed'>
+            <b:include data='top' name='status-message'/>
+            <b:loop values='data:posts' var='post'>
+              <b:if cond='data:post.isDateStart and not data:post.isFirstPost'>
+                &lt;/div&gt;&lt;/div&gt;
+              </b:if>
+              <b:if cond='data:post.isDateStart'>
+                &lt;div class=&quot;date-outer&quot;&gt;
+              </b:if>
+              <b:if cond='data:post.dateHeader'>
+                <h2 class='date-header'><span><data:post.dateHeader/></span></h2>
+              </b:if>
+              <b:if cond='data:post.isDateStart'>
+                &lt;div class=&quot;date-posts&quot;&gt;
+              </b:if>
+              <div class='post-outer'>
+                <b:include data='post' name='post'/>
+              </div>
+            </b:loop>
+            <b:if cond='data:numPosts != 0'>
+              &lt;/div&gt;&lt;/div&gt;
+            </b:if>
+          </div>
+          <b:include name='nextprev'/>
+        </b:includable>
+
+        <b:includable id='post' var='post'>
+          <div class='post hentry'>
+            <b:if cond='data:post.title'>
+              <h3 class='post-title entry-title'>
+                <b:if cond='data:post.link or (data:post.url and data:blog.url != data:post.url)'>
+                  <a expr:href='data:post.link ? data:post.link : data:post.url'><data:post.title/></a>
+                <b:else/>
+                  <data:post.title/>
+                </b:if>
+              </h3>
+            </b:if>
+            <div class='post-header'>
+              <b:if cond='data:post.timestamp'><data:post.timestamp/></b:if>
             </div>
-        </div>
-    </div>
+            <div class='post-body entry-content'>
+              <data:post.body/>
+            </div>
+            <div class='post-footer'>
+              <b:if cond='data:post.labels'>
+                <b:loop values='data:post.labels' var='label'>
+                  <a expr:href='data:label.url'>#<data:label.name/></a>&#160;
+                </b:loop>
+              </b:if>
+            </div>
+          </div>
+        </b:includable>
 
-    <div class="support-box">
-        <p style="opacity:0.9">Running this AI costs money. If we saved your time, please support our mission with one click.</p>
-        <a href="YOUR_LINK_HERE" class="cpc-btn" target="_blank">🚀 SUPPORT TRUSTSCAN</a>
-    </div>
+        <b:includable id='nextprev'>
+          <div class='blog-pager' id='blog-pager'>
+            <b:if cond='data:newerPageUrl'>
+              <a class='blog-pager-newer-link' expr:href='data:newerPageUrl'>&#8592; Newer</a>
+            </b:if>
+            <a class='home-link' expr:href='data:blog.homepageUrl'>Home</a>
+            <b:if cond='data:olderPageUrl'>
+              <a class='blog-pager-older-link' expr:href='data:olderPageUrl'>Older &#8594;</a>
+            </b:if>
+          </div>
+        </b:includable>
 
-    <script>
-        function runMatch(el, time) {
-            document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('active'));
-            el.classList.add('active');
-            var res = document.getElementById('res');
-            res.style.display = 'block';
-            if(time==='5'){
-                update('Fetch Rewards', 'Snap grocery receipts for points.', 'Extremely slow accumulation. Takes months for a $5 card.');
-            }else if(time==='15'){
-                update('Survey Junkie', 'Fast surveys with clean UI.', 'High data collection. They build a deep profile of your life.');
-            }else{
-                update('Swagbucks', 'The biggest rewards platform.', 'The disqualification trap. You might work 15 mins for $0.');
-            }
-        }
-        function update(n, d, f){
-            document.getElementById('s-name').innerText = n;
-            document.getElementById('s-desc').innerText = d;
-            document.getElementById('s-flaw').innerText = f;
-        }
-        setInterval(() => {
-            let v = document.getElementById('v-count');
-            if(Math.random() > 0.5) v.innerText = (parseInt(v.innerText.replace(',',''))+1).toLocaleString();
-        }, 4000);
-    </script>
+        <b:includable id='status-message'>
+          <b:if cond='data:navMessage'>
+            <div class='status-msg-wrap'><data:navMessage/></div>
+          </b:if>
+        </b:includable>
+
+        <b:includable id='comment_picker' var='post'/>
+        <b:includable id='comment_count_picker' var='post'/>
+        <b:includable id='feedLinks'/>
+        <b:includable id='feedLinksBody' var='links'/>
+        <b:includable id='comments' var='post'/>
+        <b:includable id='comment-form' var='post'/>
+        <b:includable id='commentDeleteIcon' var='comment'/>
+        <b:includable id='postQuickEdit' var='post'/>
+        <b:includable id='backlinkDeleteIcon' var='backlink'/>
+        <b:includable id='backlinks' var='post'/>
+        <b:includable id='shareButtons' var='post'/>
+        <b:includable id='iframe_comments' var='post'/>
+        <b:includable id='mobile-main' var='top'/>
+        <b:includable id='mobile-index-post' var='post'/>
+        <b:includable id='mobile-post' var='post'/>
+        <b:includable id='mobile-nextprev'/>
+        <b:includable id='threaded_comments' var='post'/>
+        <b:includable id='threaded-comment-form' var='post'/>
+        <b:includable id='threaded_comment_js' var='post'/>
+      </b:widget>
+    </b:section>
+  </div>
+
+  <!-- Sidebar Column -->
+  <aside id='ts-sidebar'>
+    <div class='ts-section-title'>// Tools</div>
+
+    <b:section class='sidebar' id='sidebar-right-1' name='Sidebar' preferred='yes' showaddelement='yes'>
+
+      <!-- Search -->
+      <b:widget id='BlogSearch1' locked='false' title='Search' type='BlogSearch'>
+        <b:includable id='main'>
+          <div class='sidebar-widget'>
+            <h2>Search</h2>
+            <div class='widget-content'>
+              <form expr:action='data:blog.searchUrl'>
+                <input autocomplete='off' class='gsc-input' name='q' placeholder='Search articles...' type='text'/>
+                <input class='gsc-search-button' type='submit' value='SEARCH'/>
+              </form>
+            </div>
+          </div>
+        </b:includable>
+      </b:widget>
+
+      <!-- Labels -->
+      <b:widget id='Label1' locked='false' title='Categories' type='Label'>
+        <b:widget-settings>
+          <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
+          <b:widget-setting name='display'>LIST</b:widget-setting>
+          <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <div class='sidebar-widget'>
+            <h2>Categories</h2>
+            <div expr:class='"widget-content " + data:display + "-label-widget-content"'>
+              <ul>
+                <b:loop values='data:labels' var='label'>
+                  <li><a expr:href='data:label.url'><data:label.name/></a></li>
+                </b:loop>
+              </ul>
+            </div>
+          </div>
+        </b:includable>
+      </b:widget>
+
+      <!-- Archive -->
+      <b:widget id='BlogArchive1' locked='false' title='Archive' type='BlogArchive'>
+        <b:widget-settings>
+          <b:widget-setting name='showStyle'>FLAT</b:widget-setting>
+          <b:widget-setting name='frequency'>MONTHLY</b:widget-setting>
+          <b:widget-setting name='showPosts'>false</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <div class='sidebar-widget'>
+            <h2>Archive</h2>
+            <div class='widget-content'>
+              <div id='ArchiveList'>
+                <div expr:id='data:widget.instanceId + "_ArchiveList"'>
+                  <b:include cond='data:style == "FLAT"' data='data' name='flat'/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </b:includable>
+        <b:includable id='flat' var='data'>
+          <ul class='flat'>
+            <b:loop values='data:data' var='i'>
+              <li><a expr:href='data:i.url'><data:i.name/></a> (<data:i.post-count/>)</li>
+            </b:loop>
+          </ul>
+        </b:includable>
+        <b:includable id='interval' var='data'/>
+        <b:includable id='menu' var='data'/>
+        <b:includable id='posts' var='posts'/>
+        <b:includable id='toggle' var='interval'/>
+      </b:widget>
+
+      <!-- Attribution -->
+      <b:widget id='Attribution1' locked='true' title='' type='Attribution'>
+        <b:includable id='main'/>
+      </b:widget>
+
+    </b:section>
+  </aside>
+
+</div>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     FOOTER
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<div id='ts-footer'>
+  <p>&#169; <data:blog.title/> &#183; Powered by TrustScan AI &#183; Built with &#10084; for honest reviews</p>
+</div>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     SCRIPTS
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<script type='text/javascript'>
+//<![CDATA[
+
+// â”€â”€ TrustScan Matcher â”€â”€
+function tsRun(el, t) {
+  document.querySelectorAll('.ts-opt').forEach(function(b){ b.classList.remove('active'); });
+  el.classList.add('active');
+  document.getElementById('ts-res').style.display = 'block';
+  var d = {
+    '5':  ['Fetch Rewards',  'Snap grocery receipts for points.',       'Extremely slow accumulation. Takes months for a $5 card.'],
+    '15': ['Survey Junkie',  'Fast surveys with clean UI.',              'High data collection. They build a deep profile of your life.'],
+    '30': ['Swagbucks',      'The biggest rewards platform.',            'The disqualification trap. You might work 15 mins for $0.']
+  };
+  document.getElementById('ts-name').innerText = d[t][0];
+  document.getElementById('ts-desc').innerText = d[t][1];
+  document.getElementById('ts-flaw').innerText = d[t][2];
+}
+
+// â”€â”€ Live Counter â”€â”€
+setInterval(function(){
+  var v = document.getElementById('ts-v');
+  if (v && Math.random() > 0.5) {
+    v.innerText = (parseInt(v.innerText.replace(/,/g,'')) + 1).toLocaleString('en-US');
+  }
+}, 4000);
+
+// â”€â”€ Remove loading class â”€â”€
+window.setTimeout(function(){
+  document.body.className = document.body.className.replace('loading','');
+}, 10);
+
+//]]>
+</script>
+
+<!-- Blogger required sections (hidden) -->
+<b:section class='navbar' id='navbar' maxwidgets='1' name='Navbar' showaddelement='no'>
+  <b:widget id='Navbar1' locked='true' title='Navbar' type='Navbar'>
+    <b:includable id='main'/>
+  </b:widget>
+</b:section>
+
 </body>
 </html>
